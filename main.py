@@ -89,5 +89,8 @@ button_first = tk.Button(window,text = "사진 등록",command=picselect,backgro
 button_first.grid(row=0,column=0)
 button_first['font'] = font.Font(size=30)
 
+#convert 폴더 생성
+os.makedirs("pic/convert",exist_ok=True)
+
 #창 켜진채로 유지
 window.mainloop()
