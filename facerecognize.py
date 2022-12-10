@@ -3,6 +3,8 @@ import sys
 import json
 import tkinter
 import requests
+from PIL import Image
+import re
 
 client_id = "njmaxMgpwOc8xwgzf62J"
 client_secret = "okQtVnmetS"
@@ -11,6 +13,10 @@ url_famous = "https://openapi.naver.com/v1/vision/celebrity"
 
 def work(pic:str) :
     #얼굴분석결과
+    if pic[-4:] == "webp":
+        im = Image.open(pic).convert('RGB')
+        im.save('pic/convert/converted.jpg', 'jpeg')
+        pic = 'pic/convert/converted.jpg'
     files = {'image': open(pic, 'rb')}
     headers = {'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret }
     response = requests.post(url_face,  files=files, headers=headers)
